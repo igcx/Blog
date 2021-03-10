@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>转成行内块,给父盒子设置 text-align: center</title>
+    <style>
+        .father {
+          text-align: center;
+    }
+        .center {
+          width: 400px;
+          height: 400px;
+          background-color: pink;
+          display: inline-block;
+    }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="center">我是内容盒子</div>
+        <!-- 
+            优点：简单易懂，扩展性强
+            缺点：需要额外处理inline-block的浏览器兼容性问题
+         -->
+    </div>
+</body>
+</html>

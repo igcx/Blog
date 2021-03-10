@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>“fit-content”是CSS中给“width”属性新加的一个属性值，他配合margin可以实现水平居中的效果</title>
+    <style>
+        body{
+        background: #000;
+        margin-top: 50px;
+    }
+    .pagination{
+        width: fit-content;
+        margin: 0 auto;
+    }
+    .pagination li{
+        line-height: 25px;
+        list-style: none;
+        display: inline;
+        float: left;
+    }
+    .pagination a{
+        text-decoration: none;
+        display: block;
+        color: #000;
+        padding: 0 10px;
+        border-radius: 2px;
+        border: 1px solid #F2F2F2;
+        background: #333;
+    }
+    .pagination a:hover{
+        background: orange;
+    }
+    </style>
+</head>
+<body>
+    <div class="pagination">
+        <ul>
+          <li><a href="#">Prev</a></li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">Next</a></li>
+        </ul>
+      </div>
+      <!-- 
+        优点：简单易懂，扩展性强
+        缺点：浏览器兼容性差
+       -->
+</body>
+</html>
