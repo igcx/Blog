@@ -7,3 +7,6 @@
 - 📖 I’m currently learning Javascript
 - 🎮 I'm currently playing *王者荣耀*
 - 📫 How to reach me: guo.chenxuya@gmail.com
+- 
+- 
+- [发邮件](mailto:guo.chenxuya@gmail.com)
