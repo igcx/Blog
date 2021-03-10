@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue的生命周期</title>
+</head>
+<body>
+    <!-- 
+        生命周期的概念: 一个事物从诞生到消亡的一个过程
+        每个 Vue 实例(每个组件也都是一个vue实例)都有⼀个完整的⽣命周期：
+            1. 开始创建 (空实例)
+            2. 初始化数据
+            3. 编译模版
+            4. 挂载 DOM
+            5. 渲染、更新数据 => 重新渲染
+            6. 卸载
+        这⼀系列过程我们称之为 Vue 的⽣命周期。
+
+     -->
+     在 Vue 从创建实例到最终完全消亡的过程中，会执行一系列的方法，用于对应当前 Vue 的状态，这些方法我们叫它：生命周期钩子！
+
+     1. beforeCreate：在实例初始化之后，数据观测 (Data Observer) 和 event/watcher 事件配置之前被调用。
+     2. created：在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)、属性和方法的运算，watch/event 事件回调；然而，挂载阶段还没开始，$el 属性目前不可见。
+     3. beforeMount：在挂载开始之前被调用，相关的 render 函数首次被调用。
+     4. mounted：el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。
+     5. beforeUpdate：数据更新时调用，发生在虚拟 DOM 打补丁之前。这里适合在更新之前访问现有的 DOM，比如手动移除已添加的事件监听器。
+     6. updated：由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。当这个钩子被调用时，组件 DOM 已经更新，所以现在可以执行依赖于 DOM 的操作，然而在大多数情况下，你应该避免在此期间更改状态。如果要相应状态改变，通常最好使用计算属性或 watcher 取而代之（PS：计算属性与 watcher 会在后面的篇幅中进行介绍）。
+     7. beforeDestroy：实例销毁之前调用，在这一步，实例仍然完全可用。
+     8. destroyed：Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。
+
+     <!-- 
+         
+         3个关于 vue 组件的生命周期钩子
+    1. activated：keep-alive 组件激活时调用（PS：与组件相关，关于 keep-alive 会在讲解组件时介绍）。
+    2. deactivated：keep-alive 组件停用时调用（PS：与组件相关，关于 keep-alive 会在讲解组件时介绍）。
+    3. errorCaptured ：当捕获一个来自子孙组件的错误时被调用，此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串，此钩子可以返回 false 以阻止该错误继续向上传播。 
+     
+    -->
+
+    <!--
+         生命周期                    执行时机                                             
+         -------------  ------------------------------------------------------------ 
+         beforeCreate   在组件实例被创建之初、组件的属性⽣效之前被调用               
+         created        在组件实例已创建完毕。此时属性也已绑定，但真实DOM还未⽣成，$el 还不可⽤ 
+         beforeMount    在组件挂载开始之前被调⽤。相关的 render 函数⾸次被调⽤       
+         mounted        在 el 被新建的 vm.$el 替换并挂载到实例上之后被调用           
+         beforeUpdate   在组件数据修改了, 视图更新之前调⽤。发⽣在虚拟 DOM 打补丁之前 
+         updated        在组件数据修改了, 视图更新之后被调用                         
+         activited      在组件被激活时调⽤（使用了 `<keep-alive>` 的情况下）         
+         deactivated    在组件被停用时调⽤（使用了 `<keep-alive>` 的情况下）         
+         beforeDestory  在组件销毁前调⽤  (销毁: vue默认会进行释放掉实例所有的监听, 释放掉所有的组件...) 
+         destoryed      在组件销毁后调⽤  (像定时器,  webscoket连接, ... 跟vue没有太大关联的资源, 需要手动释放!) 
+    -->
+     
+     <!-- 将生命周期钩子函数的顺序打乱，并编号，但它还是会自动按照执行顺序输出， -->
+     <div id="app">
+        <button @click="clickCounter()">点击</button>
+        <p>{{ count }}</p>
+    </div>
+        
+        <script type="text/javascript">
+          var app = new Vue({
+            el: '#app',
+            data:{
+              count: 1
+            },
+            methods:{
+              clickCounter(){
+                this.count += 1
+              }
+            },
+            created: function(){
+              console.log('2. 实例已经创建')
+            },
+            beforeCreate: function(){
+              console.log('1. 实例初始化')
+            },
+            mounted:function(){
+              console.log('4. 挂载到实例')
+            },
+            beforeMount:function(){
+              console.log('3. 挂载开始之前')
+            },
+            beforeUpdate: () => {
+              console.log('数据更新时调用')
+            },
+            updated:function(){
+              console.log('更新数据重新渲染DOM')
+            },
+            beforeDestroy:function(){
+              console.log('实例销毁之前调用')
+            },
+            destroyed:function(){
+              console.log('实例销毁之后调用')
+            }
+          })
+          
+          /*点击页面销毁vue对象, 销毁之后实例将会释放*/
+          // 销毁之后,再次点击就不起作用了
+          document.onclick=function(){
+              app.$destroy();
+          };
+        </script>
+    
+</body>
+</html>

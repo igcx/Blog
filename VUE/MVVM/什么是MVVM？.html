@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>什么是 MVVM </title>
+</head>
+<body>
+    <div>
+        Model-View-ViewModel 模式
+        模型视图视图模型
+        
+        Model层: 数据模型层
+        通过 Ajax、fetch 等 API 完成客户端和服务端业务模型的同步。
+
+        View层: 视图层
+        作为视图模板存在，其实View 就是⼀个动态模板。
+
+        ViewModel层: 视图模型层
+        负责暴露数据给 View 层，并对 View 层中的数据绑定声明、 指令声明、 事件绑定声明, 进行实际的业务逻辑实现。
+        数据变化了, 视图自动更新 => ViewModel 底层会做好监听 Object.defineProperty 当数据变化时，View 层会自动更新
+        视图变化了, 绑定的数据自动更新 =>  会监听双向绑定的表单元素的变化，⼀旦变化，绑定的数据也会得到⾃动更新。
+
+
+    </div>
+</body>
+</html>

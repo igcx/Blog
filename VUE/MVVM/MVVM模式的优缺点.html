@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVVM模式的优缺点</title>
+</head>
+<body>
+    <div>
+        <!-- 
+            优点
+
+            1. 实现了视图（View）和模型（Model）的分离，降低代码耦合、提⾼视图或逻辑的复⽤性
+            2. 提⾼了可测试性：ViewModel 的存在可以帮助开发者更好地编写测试代码 
+            3. 能⾃动更新 DOM：利⽤双向绑定，数据更新后视图⾃动更新，让开发者从繁琐的⼿动操作 DOM 中解放出来 
+
+
+            缺点
+
+            1. Bug 难被调试：因为使⽤了双向绑定的模式，当我们看到界⾯发生异常了，有可能是 View 的代码产生的 Bug，也有可能是Model 代码的问题。数据绑定使得⼀个位置的 Bug 被快速传递到别的位置，要定位原始出问题的地⽅就变得不那么容易了
+
+            可采用的调试方案:
+            (1) 注释掉一段代码, 确定代码的位置
+            (2) debugger 打断点 或者 console 进行调试
+
+            2. 在⼀个⼤的模块中 Model 也会很⼤，虽然使⽤上来说⽅便了，但如果⻓期持有不释放内存，就会造成更多的内存消耗 
+            占用的是浏览器的内存
+
+         -->
+    </div>
+</body>
+</html>
