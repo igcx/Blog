@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFC 的应用场景：实现自适应布局</title>
+    <style>
+      .box1 {
+        float: left;
+        width: 300px;
+        background-color: red;
+        height: 400px;
+      }
+    
+      .box2 {
+        background-color: blue;
+        height: 600px;
+        overflow: hidden; /* 将 overflow 设置为非 visible 值可触发 BFC */
+      }
+    </style>
+</head>
+<body>
+    <!-- 
+        3. 场景三：实现自适应布局, 防止元素被浮动元素覆盖(左边固定, 右边自适应)
+        box2 会被设置了浮动的 box1 覆盖：
+        要避免这种覆盖行为，可以让 box2 触发 BFC,  实现布局效果, 左边固定右边自适应：overflow: hidden;
+    -->
+   
+<div class="box1"></div>
+<div class="box2"></div>
+</body>
+</html>

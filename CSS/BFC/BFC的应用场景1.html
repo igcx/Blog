@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFC 的应用场景</title>
+    <style>
+        .box1 {
+          width: 200px;
+          height: 100px;
+          background-color: red;
+          margin-bottom: 10px; /* 下外边距为 10px */
+        }
+      
+        .box2 {
+          width: 200px;
+          height: 100px;
+          background-color: green;
+          margin-top: 10px; /* 上外边距为 10px */
+          display: inline-block; /* 通过设置 display 为 inline-block 可以触发 BFC */
+        }
+      </style>
+</head>
+<body>
+    <!-- 
+        1. 场景一：防止两个相邻块级元素的上下 margin 发生重叠 (上下margin合并问题) 
+    属于同一 BFC 的, 两个相邻块级子元素的上下 margin 会重叠，如果想让它们不重叠，可通过让这两个相邻块级子元素分属于不同的BFC。
+    以下示例代码中的两个盒子的上下外边距会重合（即它们都设置了10px的外边距，我们期望它们之间的间距是 20px，但实际效果却只有 10px）：
+        让其中一个盒子触发BFC，从而达到间隔 20px 的期望效果：display: inline-block;
+    -->
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

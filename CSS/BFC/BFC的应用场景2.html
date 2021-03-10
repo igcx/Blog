@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFC 的应用场景：清除浮动</title>
+    <style>
+      .box1 {
+        width: 200px;
+        background-color: red;
+        overflow: hidden;
+      }
+    
+      .box2 {
+        float: left;
+        background-color: green;
+      }
+    </style>
+</head>
+<body>
+    <!-- 
+        2. 场景二：清除浮动
+        容器元素 box1 的高度会没有高：
+        而通过为 box1 添加 BFC 触发条件，可以让它的高度变回正常状态：overflow: hidden;
+    -->
+    <div class="box1">
+      <div class="box2">Hello,world</div>
+      <div class="box2">Hello,world</div>
+      <div class="box2">Hello,world</div>
+    </div>
+</body>
+</html>
