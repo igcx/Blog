@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定位方式</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+        }
+        .header {
+          width: 100%;
+          height: 100px;
+          background-color: orange;
+        }
+        .nav {
+          width: 100%;
+          height: 200px;
+          background-color: pink;
+          position: sticky;
+          top: 0px;
+        }
+        .main {
+          width: 100%;
+          height: 100px;
+          background-color: skyblue;
+        }
+      
+      </style>
+</head>
+<body>
+    <!-- 
+    也就是 position 样式的几个属性。
+    static 正常文档流定位
+        - 此时设置 top、right、bottom、left 以及 z-index 都无效
+        - 块级元素遵循从上往下纵向排列，行级元素遵循从左到右排列
+
+
+    relative 相对定位
+    这个 “相对” 是指相对于正常文档流的位置。
+
+
+    absolute 绝对定位
+    当前元素相对于 最近的非 static 定位的祖先元素 来确定自己的偏移位置。
+    例如，当前为 absolute 的元素的父元素、祖父元素都为 relative，则当前元素会相对于父元素进行偏移定位。
+
+
+    fixed 固定定位
+    当前元素相对于屏幕视口 viewport 来确定自己的位置。并且当屏幕滚动时，当前元素的位置也不会发生改变。
+
+
+    sticky 粘性定位
+    有点像 relative 和 fixed 的结合。当它的父元素在视口区域、并进入 top 值给定的范围内时，当前元素就以 fixed 的方式进行定位，否则就以 relative 的方 式进行定位。
+
+     -->
+    <div class="header">我是头部</div>
+    <div class="nav">我是导航</div>
+    <div class="container">
+        <div class="main">我是主体部分1</div>
+        <div class="main">我是主体部分2</div>
+        <div class="main">我是主体部分3</div>
+        <div class="main">我是主体部分4</div>
+        <div class="main">我是主体部分5</div>
+        <div class="main">我是主体部分6</div>
+        <div class="main">我是主体部分7</div>
+        <div class="main">我是主体部分8</div>
+</div>
+</body>
+</html>
