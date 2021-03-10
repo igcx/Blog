@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js的变量提升</title>
+</head>
+<body>
+  <script>
+    // 变量提升（hoisting），是负责解析执行代码的 JavaScript 引擎的工作方式产生的一个特性。
+
+    // JS引擎在运行一份代码的时候，会按照下面的步骤进行工作：
+      // 1. 首先，对代码进行预解析，并获取声明的所有变量
+      // 2. 然后，将这些变量的声明语句统一放到代码的最前面
+      // 3. 最后，开始一行一行运行代码
+    console.log(a) 
+
+    var a = 1 
+
+    function b() { 
+      console.log(a) 
+    }
+
+    b() // 1
+    // 上⾯这段代码的实际执⾏顺序为: 
+    // 1. JS引擎将 `var a = 1` 分解为两个部分：变量声明语句 `var a = undefined` 和变量赋值语句 `a = 1` 
+    // 2. JS引擎将 `var a = undefined` 放到代码的最前面，而 `a = 1` 保留在原地 
+
+    // 也就是说代码经过了转换，代码就变成了: 
+    var a = undefined
+
+    console.log(a) // undefined 
+
+    a = 1
+
+    function b() { 
+      console.log(a) 
+    }
+
+    b() // 1
+
+    // 变量的这一转换过程，就被称为变量的声明提升。
+    // 而这是不规范, 不合理的, 我们用的  let 就没有这个变量提升的问题
+  </script>
+</body>
+</html>
