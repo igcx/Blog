@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优化页面渲染性能</title>
+</head>
+<body>
+    <!-- 
+        优化页面渲染性能的角度:  尽可能减少重绘和重排的次数
+        主要有几大方式来避免：
+         1 集中修改样式 (这样可以尽可能利用浏览器的优化机制, 一次重排重绘就完成渲染)
+         2 尽量避免在遍历循环中, 进行元素 offsetTop 等样式值的获取操作, 会强制浏览器刷新队列, 进行渲染
+         3 利用 transform 实现动画变化效果, 去代替 left top 的变换 (轮播图等) 
+            transform变换, 只是视觉效果! 不会影响到其他盒子,  只触发了自己的重绘
+         4 使用文档碎片（DocumentFragment）可以用于批量处理, 创建元素
+
+        文档碎片的理解:
+        documentFragment是一个保存多个元素的容器对象（保存在内存）当更新其中的一个或者多个元素时，页面不会更新。
+        当documentFragment容器中保存的所有元素操作完毕了,  只有将其插入到页面中才会更新页面。
+     -->
+     <ul id="box"></ul>
+
+<script>
+  // let ul = document.getElementById("box")
+
+  // for (let i = 0; i < 20; i++) {
+  //   let li = document.createElement("li")
+  //   li.innerHTML = "index: " + i
+  //   ul.appendChild(li)
+  // }
+
+
+  let ul = document.getElementById("box")
+  let fragment = document.createDocumentFragment() // 文档碎片
+  for (let i = 0; i < 20; i++) {
+      let li = document.createElement("li")
+      li.innerHTML = "index: " + i
+      fragment.appendChild(li)
+  }
+  ul.appendChild(fragment)
+
+//   vue底层渲染更新, 就用了  document.createDocumentFragment
+</script>
+</body>
+</html>
