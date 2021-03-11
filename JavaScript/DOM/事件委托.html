@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件委托</title>
+</head>
+<body>
+    <!-- 
+        事件委托：就是利用了事件冒泡的机制，在较上层位置的元素上添加一个事件监听函数，来管理该元素及其所有子孙元素上的某一类的所有事件。
+     -->
+
+  <ul id="list">
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+    <li>555</li>
+</ul>
+
+<script type="text/javascript">
+    // ⽗元素 
+    var list = document.getElementById('list'); //ul
+
+    // 为⽗元素绑定事件，委托管理它的所有⼦元素li的点击事件 
+    list.onclick = function (event) {
+      var currentTarget = event.target; // 触发事件的事件源, li
+      if (currentTarget.tagName.toLowerCase() === 'li') {
+          alert(currentTarget.innerText)
+      }
+    }
+
+    // 事件委托, 给父元素注册事件, 管理所有子元素的点击事件等 (底层原理, 事件冒泡!)
+    // 适用场景：在绑定大量事件的时候，可以选择事件委托
+    //     优点：
+    // - 事件委托可以减少事件注册数量，节省内存占⽤!
+    // - 当新增⼦元素时，⽆需再次做事件绑定，因此非常适合动态添加元素   (vue解析模板时, 会对新创建的元素, 额外进行绑定的)
+</script>
+  
+</body>
+</html>
