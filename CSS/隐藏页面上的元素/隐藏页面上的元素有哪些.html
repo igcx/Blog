@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css的元素隐藏</title>
+</head>
+<body>
+    <!-- 
+        opacity: 0  通过将元素的透明度设置为0，实现看起来隐藏的效果；但是依然会占用空间并可以进行交互
+        visibility: hidden  与透明度为0的方案非常类似，会占据空间，但不可以进行交互
+        overflow: hidden    只会隐藏元素溢出的部分；占据空间且不可交互
+        display: none   可以彻底隐藏元素并从文档流中消失，不占据空间也不能交互，且不影响布局
+        z-index: -9999  通过将元素的层级置于最底层，让其他元素覆盖住它，达到看起来隐藏的效果
+        transform: scale(0,0)   通过将元素进行缩放，缩小为0；依然会占据空间，但不可交互
+        left: -9999px   通过将元素定位到屏幕外面，达到看起来看不到的效果
+     -->
+</body>
+</html>
