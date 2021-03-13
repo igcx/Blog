@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪类和伪元素的区别</title>
+</head>
+<body>
+    <!-- 
+            什么是伪类？
+        伪类（pseudo-class）是以冒号 : 为前缀，可被添加到⼀个选择器的末尾的关键字。
+        它用于让样式在元素的特定状态下才被应用到实际的元素上。比如： :checked、 :hover、 :disabled、  :first-child 等。
+        :hover
+        :nth-child(1)
+        :nth-child(2)
+        :checked
+        注意: 伪类, 虽然是写法比较特殊, css选择器的权重, 和类一致的
+
+            什么是伪元素？
+        :before / :after
+        伪元素⽤于创建⼀些并不在 DOM 树中的元素，并为其添加样式。伪元素的语法和伪类类似，可以一个冒号或两个冒号为前缀。
+        ⽐如，可以通过 :before 、:after 来在⼀个元素前、后增加⼀些额外的⽂本并为它们添加样式；
+        并且，虽然⽤户可以看到这些⽂本，但其实它们并不在 DOM 树中。(坑: 伪元素是无法注册事件的, 所以不要通过js控制伪元素)
+
+            两者的区别
+        虽然它们在语法上是一致的，但是它们的功能区别还是非常明显的。
+        - 伪类是用来匹配元素的特殊状态的
+        - 伪元素是用来匹配元素的隶属元素的，这些隶属元素可以在界面中展示，但在 DOM 中不体现
+     -->
+</body>
+</html>
