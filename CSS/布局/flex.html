@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex布局</title>
+    <style>
+    .Grid {
+    display: flex;
+    }
+
+    .Grid-cell {
+    flex: 1;
+    }
+    </style>
+</head>
+<body>
+    <!-- 
+        布局的传统解决方案，基于盒状模型，依赖 display 属性 + position属性 + float属性。它对于那些特殊布局非常不方便，比如，垂直居中就不容易实现。
+        Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
+        任何一个容器都可以指定为 Flex 布局。
+
+        flex-direction: 调整主轴方向
+            row：主轴方向为水平向右(默认值)
+            column：主轴方向为竖直向下
+            row-reverse:主轴方向为水平向左
+            column-reverse:主轴方向是竖直向上。
+
+        justify-content主要用来设置主轴方向的对齐方式
+            flex-start: 弹性盒子元素将向起始位置对齐(默认值)
+            flex-end: 弹性盒子元素将向结束位置对齐。
+            center: 弹性盒子元素将向行中间位置对齐
+            space-around: 弹性盒子元素会平均地分布在行里
+            space-between:第一个贴左边，最后一个贴右边，其他盒子均分，保证每个盒子之间的空隙是相等的。
+
+        align-items用于调整侧轴的对齐方式
+            flex-start： 元素在侧轴的起始位置对齐。 
+            flex-end： 元素在侧轴的结束位置对齐。
+            center： 元素在侧轴上居中对齐。
+            stretch： 元素的高度会被拉伸到最大（不给高度时, 才拉伸）。(默认值)
+            baseline: 项目的第一行文字的基线对齐。
+
+        flex-wrap属性控制flex容器是单行或者多行,默认不换行
+            nowrap： 不换行（默认），如果宽度溢出，会压缩子盒子的宽度。
+            wrap： 当宽度不够的时候，会换行。
+            wrap-reverse：换行，第一行在下方。
+
+        align-content用来设置多行的flex容器的排列方式
+            flex-start： 各行向侧轴的起始位置堆叠。 
+            flex-end： 各行向弹性盒容器的结束位置堆叠。
+            center： 各行向弹性盒容器的中间位置堆叠。
+            space-around： 各行在侧轴中平均分布。 
+            space-between： 第一行贴上边，最后一个行贴下边,其他行在弹性盒容器中平均分布。 
+            stretch：拉伸，不设置高度的情况下。(默认值)
+     -->
+
+        <div class="Grid">
+            <div class="Grid-cell">这里是内容区域</div>
+            <div class="Grid-cell">这里是内容区域</div>
+            <div class="Grid-cell">这里是内容区域</div>
+            <div class="Grid-cell">这里是内容区域</div>
+            <div class="Grid-cell">这里是内容区域</div>
+            <div class="Grid-cell">这里是内容区域</div>
+            <div class="Grid-cell">这里是内容区域</div>
+            <div class="Grid-cell">这里是内容区域</div>
+            <div class="Grid-cell">这里是内容区域</div>
+        </div>
+</body>
+</html>
