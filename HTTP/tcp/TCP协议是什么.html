@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCP协议</title>
+</head>
+<body>
+    <!-- 
+         1. TCP协议是什么?
+    TCP(Transmission Control Protocol 传输控制协议) 是一种面向连接(连接导向) 的、可靠的、 基于IP的传输层协议。
+    TCP 使⽤校验、确认和重传机制来保证可靠传输 
+    而 HTTP协议 就是建立在 TCP / IP 协议 之上的一种应用。
+
+    TCP: 三次握手, 四次挥手~
+
+        2. 一次完整的HTTP服务过程是什么
+        当我们在web浏览器的地址栏中输入： www.baidu.com ，具体发生了什么？
+            1. 对 www.baidu.com 这个网址进行DNS域名解析，得到对应的IP地址
+            2. 根据这个IP，找到对应的服务器，发起TCP的三次握手
+            3. 建立TCP连接后, 发起HTTP请求
+            4. 服务器响应HTTP请求，浏览器得到html代码
+            5. 浏览器解析html代码，并请求html代码中的资源（如js、css、图片等）（先得到html代码，才能去找这些资源）
+            6. 浏览器对页面进行渲染呈现给用户
+            7. 服务过程完毕, 关闭TCP连接, 四次挥手
+
+            1.DNS怎么找到域名的？
+                 DNS域名解析采用的是递归查询的方式，过程是，先去找DNS缓存->缓存找不到就去找根域名服务器->根域名又会去找下一级，这样递归查找之后，找到了，给我们的web浏览器
+            2.为什么HTTP协议要基于TCP来实现？  
+                 TCP是一个端到端的可靠面相连接的协议，HTTP基于传输层TCP协议不用担心数据传输的各种问题（当发生错误时，可以重传）
+            3.最后一步浏览器是如何对页面进行渲染的？  
+                 a）解析html文件构成 DOM树
+                 b）解析CSS文件构成渲染树
+                 c）边解析，边渲染
+                 d）JS 单线程运行，JS有可能修改DOM结构，意味着JS执行完成前，后续所有资源的下载是没有必要的，所以JS是单线程，会阻塞后续资源下载
+     -->
+</body>
+</html>
