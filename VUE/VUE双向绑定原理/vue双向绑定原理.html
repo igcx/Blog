@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue双向绑定原理</title>
+</head>
+<body>
+    <!-- 
+        基本认知
+    在 Vue 2.x 中，利⽤的是 Object.defineProperty 去劫持对象的访问器（Getter、Setter），
+    当对象属性值发⽣变化时可获取变化，然后根据变化来作后续响应；(一个一个的劫持)
+    在 Vue 3.0 中，则是通过 Proxy 代理对象进⾏类似的操作。劫持的是整个对象, 只要对象中的属性变化了, 都能劫持到
+
+    一句话概括:
+    Vue内部通过Object.defineProperty方法属性拦截的方式，把data对象里每个数据的读写转化成getter/setter，当数据变化时通知视图更新。
+
+
+     Object.defineProperty和Proxy的优缺点？
+    Proxy 
+        - 可以直接监听整个对象，⽽⾮是对象的某个属性 
+        - 可以直接监听数组的变化
+        - 拦截⽅法丰富：多达13种，不限于get set deleteProperty、has 等。
+        比 Object.defineProperty 强大很多 
+
+    Object.defineProperty
+        - 兼容性较好（可⽀持到 IE9）
+        
+     -->
+</body>
+</html>
