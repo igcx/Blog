@@ -1,0 +1,78 @@
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        box-sizing: border-box;
+      }
+
+      .carousel {
+        width: 790px;
+        height: 340px;
+        margin: 100px auto;
+        /* 超出的盒子隐藏 */
+        overflow: hidden;
+        position: relative;
+      }
+
+      .carousel ul {
+        width: 600%;
+        height: 340px;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .carousel li {
+        float: left;
+      }
+
+      .carousel ol {
+        position: absolute;
+        height: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 10px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 11px;
+      }
+
+      .carousel ol li {
+        width: 12px;
+        height: 12px;
+        float: left;
+        margin: 5px;
+        background-color: #fff;
+        border-radius: 50%;
+      }
+
+      .carousel ol li.active {
+        background-color: red;
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 100px;
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        text-align: center;
+        line-height: 100px;
+        color: #fff;
+        font-size: 40px;
+        font-family: '宋体';
+        display: none;
+      }
+
+      .carousel:hover .arrow {
+        display: block;
+      }
+
+      .arrow-l {
+        left: 0;
+      }
+
+      .arrow-r {
+        right: 0;
+      }
