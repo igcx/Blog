@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    view到model：dom 事件绑定
+      1、view  ，input
+      2、model ，定义 data
+      3、js中拿到input
+
+   -->
+  <input type="text">
+  <script>
+    const data = {
+      msg: 'hello'
+    }
+    const input = document.querySelector('input')
+
+    input.value = data.msg
+    // keyup 在按功能键的时候也会触发事件
+    // input.addEventListener('keyup', function() {
+    //   console.log(this.value)
+    // })
+    
+    // change 输入的时候不触发事件，只有失去焦点才会触发事件
+    // input.addEventListener('change', function() {
+    //   console.log(this.value)
+    // })
+
+    input.addEventListener('input', function() {
+      // console.log(this.value)
+      data.msg = this.value
+    })
+
+  </script>
+</body>
+</html>

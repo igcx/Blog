@@ -8,7 +8,16 @@
 </head>
 <body>
     <!-- 
-        基本认知
+        数据双向绑定：
+            view到model：
+                1、通过DOM事件绑定来实现。
+
+            model到view：
+                1、脏数据检测： angular 1.x , 定时器 （轮询）。 ie 678
+                2、es5语法：vue2.0, Object.defineProperty ,数据劫持。 
+                3、es6语法：vue3.0  proxy，代理。
+    -->
+    <!-- 
     在 Vue 2.x 中，利⽤的是 Object.defineProperty 去劫持对象的访问器（Getter、Setter），
     当对象属性值发⽣变化时可获取变化，然后根据变化来作后续响应；(一个一个的劫持)
     在 Vue 3.0 中，则是通过 Proxy 代理对象进⾏类似的操作。劫持的是整个对象, 只要对象中的属性变化了, 都能劫持到

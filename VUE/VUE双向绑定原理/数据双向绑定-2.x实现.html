@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <script>
+        const data = {
+            msg: 'hello'
+        }
+
+        const input = document.querySelector('input')
+        input.value = data.msg
+        // v-m
+        input.addEventListener('input', function() {
+            data.msg = this.value
+        })
+        // m-v 数据劫持
+        let msg = data.msg
+        Object.defineProperty(data, 'msg', {
+            get() {
+                return msg
+            },
+            set(value) {
+                msg = value
+                // 在 set 方法中，给 dom 进行赋值，从而实现 从 model 到 view 的同步
+                input.value = value
+            }
+        })
+
+        // Object.defineProperty 的缺点：
+        // 1、一次只能劫持一个属性
+        // 2、给对象动态添加的属性 还需要重新劫持
+
+        data.name = '胡歌'
+    </script>
+</body>
+</html>

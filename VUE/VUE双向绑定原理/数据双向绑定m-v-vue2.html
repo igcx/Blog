@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    model到view：
+      vue2.0 ，Object.defineProperty
+   -->
+
+   <script>
+    const data = {
+      msg: 'hello'
+    }
+    let msg = data.msg
+    /* 
+    参数一：要劫持属性所在的对象。
+    参数二：要劫持的属性名 ，字符串。
+    参数三：是一个对象，里面定义get 和 set
+    */
+    Object.defineProperty(data, 'msg', {
+      get() {
+        
+        return msg
+      },
+      set(value) {
+        // console.log(value)
+        // console.log('执行了set方法')
+        // 赋值给data.msg 会造成死循环
+        // data.msg在初始化之后，就可以不用了。
+        // 给DOM 内容赋值
+        msg =value
+      }
+    })
+    
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <script>
+        const data = {
+            msg: 'hello'
+        }
+        const input = document.querySelector('input')
+        input.value = data.msg
+        // v-m
+        input.addEventListener('input', function() {
+            data.msg = this.value
+        })
+
+        // m-v
+        const obj = new Proxy(data, {
+            get(target, key) {
+                return target[key]
+            },
+            set(target, key, value) {
+                target[key] = value
+                input.value = value
+            }
+        })
+    </script>
+</body>
+</html>
