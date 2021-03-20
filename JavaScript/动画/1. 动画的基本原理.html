@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        position: absolute;
+        left: 0;
+        top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <button>点击我去向400的位置</button>
+    <div class="box"></div>
+
+    <script>
+      var btn = document.querySelector('button');
+      var box = document.querySelector('.box');
+
+      // 1. 在当前位置(offsetLeft)上 + 一个对应 的步长
+      // 2. 添加定时器 自动执行
+      // 3. 极值判断(当当前位置到底了目标位置, 让定时器停止)
+
+      btn.onclick = function () {
+        var timerId = setInterval(function () {
+          // 判断条件
+
+          if (box.offsetLeft >= 400) {
+            // 清除定时器
+            clearInterval(timerId);
+
+            // 阻止代码继续往下运行
+            // return;
+          } else {
+            box.style.left = box.offsetLeft + 10 + 'px';
+          }
+        }, 15);
+      };
+    </script>
+  </body>
+</html>

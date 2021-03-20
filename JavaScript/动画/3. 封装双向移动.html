@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        position: absolute;
+        left: 0;
+        top: 40px;
+      }
+
+      .box1 {
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+        position: absolute;
+        left: 0;
+        top: 240px;
+      }
+    </style>
+  </head>
+  <body>
+    <button>点击我去向400的位置</button>
+    <button>点击我去向0的位置</button>
+    <div class="box"></div>
+    <div class="box1"></div>
+
+    <script>
+      var btns = document.querySelectorAll('button');
+      var box = document.querySelector('.box');
+      var box1 = document.querySelector('.box1');
+
+      // 1. 多个元素移动 ?
+      // 2. 移动的目标位置不一致 ?
+      // 3. 速度不一致 ?
+
+      btns[0].onclick = function () {
+        animate(box, 400, 11);
+        animate(box1, 400, 11);
+      };
+
+      btns[1].onclick = function () {
+        animate(box, 0, 11);
+        animate(box1, 0, 11);
+      };
+
+      var timerId;
+      // 核心:
+      function animate(element, target, step) {
+        // 在这里进行判定 (因为需要用最开始的初始位置和结束位置做比较)
+        step = element.offsetLeft > target ? -step : step;
+        // 每一次开启之前清除一下上一次的定时器
+        clearInterval(element.timerId);
+        // 开启定时器
+        element.timerId = setInterval(function () {
+          // 判断条件
+          // 判断是否到底终点 (这段代码需要在定时器里面判定,因为需要获取当前最新的当前位置)
+          // var flag =
+          //   step > 0
+          //     ? element.offsetLeft >= target
+          //     : element.offsetLeft <= target;
+
+          // 判断是否到底终点优化方式 (如果距离小于了步长,那么意味着快要到达终点咯)
+          var flag = Math.abs(element.offsetLeft - target) <= Math.abs(step);
+          if (flag) {
+            // 暴力解决
+            element.style.left = target + 'px';
+            // 清除定时器
+            clearInterval(timerId);
+            // 阻止代码继续往下运行
+            // return;
+          } else {
+            element.style.left = element.offsetLeft + step + 'px';
+          }
+        }, 15);
+      }
+    </script>
+  </body>
+</html>

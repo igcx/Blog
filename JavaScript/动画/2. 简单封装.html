@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        position: absolute;
+        left: 0;
+        top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <button>点击我去向400的位置</button>
+    <div class="box"></div>
+
+    <script>
+      var btn = document.querySelector('button');
+      var box = document.querySelector('.box');
+
+      // 1. 多个元素移动 ?
+      // 2. 移动的目标位置不一致 ?
+      // 3. 速度不一致 ?
+
+      btn.onclick = function () {
+        animate(box, 400, 10);
+      };
+
+      function animate(element, target, step) {
+        var timerId = setInterval(function () {
+          // 判断条件
+
+          if (element.offsetLeft >= target) {
+            // 清除定时器
+            clearInterval(timerId);
+            // 阻止代码继续往下运行
+            // return;
+          } else {
+            element.style.left = element.offsetLeft + step + 'px';
+          }
+        }, 15);
+      }
+    </script>
+  </body>
+</html>
