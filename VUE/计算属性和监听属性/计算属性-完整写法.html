@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    计算属性 简单写法 是一个 function 必须有返回值
+
+    计算属性 完整写法：
+      1、 是一个对象
+      2、 对象中有 get 和 set 方法
+
+    计算属性的完整写法 在需要改变计算属性值的时候使用
+   -->
+    <div id="app">
+      <h1>vue</h1>
+      <input type="text" placeholder="请输入姓" v-model='firstName'> + <input type="text" placeholder="请输入名" v-model='lastName'> = <input type="text" placeholder="全名" v-model='fullName'>  
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          firstName: '',
+          lastName: '',
+        },
+        computed: {
+          // 计算属性的简单写法：
+          // fullName() {
+          //   return this.firstName + ' ' + this.lastName
+          // }
+
+          // 完整写法：
+          fullName: {
+            // 读取计算属性的时候走 get 方法
+            get() {
+              return this.firstName + ' ' + this.lastName
+            },
+            // 设置计算属性值的时候走 set 方法
+            set(value) {
+              // console.log(value)
+              let arr = value.split(' ')
+              this.firstName = arr[0]
+              this.lastName = arr[1]
+            }
+          }
+        }
+      })
+    </script>
+</body>
+</html>

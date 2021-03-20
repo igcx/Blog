@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+</head>
+<body>
+    <!-- 
+      需求： 翻转 msg
+      计算属性：
+        1、 计算属性要写在 computed 对象里
+        2、 计算属性是一个属性，定义的时候要定义成一个函数，并且一定要有返回值
+        3、 计算属性在使用的时候，和 data 中的属性是一样的（不要加括号）
+
+      计算属性的缓存机制:
+        1、计算属性在第一次计算出结果以后，会缓存结果，再次调用不会重复计算
+        2、当依赖的属性发生变化的时候，计算属性会重新计算一次，然后缓存结果
+
+      注意点：
+        1、用计算属性要适度，不要简单逻辑也用计算属性，这样反而麻烦
+        2、计算属性和 data 中的属性都是提供一个值，计算属性和 data 中的属性不可重名
+     -->
+      <div id="app">
+        <h1>vue</h1>
+        <!-- 使用插值表达式实现翻转 -->
+        <!-- <p>{{msg.split('').reverse().join('')}}</p>
+        <p>{{msg.split('').reverse().join('')}}</p>
+        <p>{{msg.split('').reverse().join('')}}</p>
+        <p>{{msg.split('').reverse().join('')}}</p>
+        <p>{{msg.split('').reverse().join('')}}</p>
+        <p>{{msg.split('').reverse().join('')}}</p>
+        <p>{{msg.split('').reverse().join('')}}</p>
+        <p>{{msg.split('').reverse().join('')}}</p>
+        <p>{{msg.split('').reverse().join('')}}</p>
+        <p>{{msg.split('').reverse().join('')}}</p> -->
+        <p>{{toReverse}}</p>
+        <p>{{toReverse}}</p>
+        <p>{{toReverse}}</p>
+        <p>{{toReverse}}</p>
+        <p>{{toReverse}}</p>
+        <p>{{toReverse}}</p>
+        <p>{{toReverse}}</p>
+        <p>{{toReverse}}</p>
+        <p>{{myname}}</p>
+      </div>
+      <script src="./vue.js"></script>
+      <script>
+        const vm = new Vue({
+          el: '#app',
+          data: {
+            msg: 'hello',
+            myname: '111'
+          },
+          // 计算属性
+          computed: {
+            toReverse() {
+              console.log('看计算属性执行了几次')
+                return this.msg.split('').reverse().join('')
+            },
+            // data 里面已经有了 myname，计算属性就不可以在定义重名的myname 
+            // myname() {
+            //   return '222'
+            // }
+          }
+        })
+      </script>
+</body>
+</html>

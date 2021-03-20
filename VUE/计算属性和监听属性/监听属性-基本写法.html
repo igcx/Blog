@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        监听属性（侦听器）：当需要监听一个数据变化的时候，数据变化会触发一定逻辑的时候
+        监听属性：
+        1、写在 watch 对象里
+        2、监听属性写成一个方法
+        3、监听属性的属性名就是要监听的 data 中的属性名
+     -->
+      <div id="app">
+        <h1>vue</h1>
+        <p>{{money}}</p>
+      </div>
+      <script src="./vue.js"></script>
+      <script>
+        const vm = new Vue({
+          el: '#app',
+          data: {
+            money: 2000,
+          },
+          watch: {
+              // 参数一： 当前的值
+              // 参数二： 以前的值
+            money(newValue,oldValue) {
+                console.log(newValue,oldValue)
+            }
+          }
+        })
+      </script>
+</body>
+</html>

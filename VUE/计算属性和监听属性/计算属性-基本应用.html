@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+</head>
+<body>
+    <!-- 
+        需求： 翻转 msg
+        计算属性：
+        1、 计算属性要写在 computed 对象里
+        2、 计算属性是一个属性，定义的时候要定义成一个函数，并且一定要有返回值
+        3、 计算属性在使用的时候，和 data 中的属性是一样的（不要加括号）
+     -->
+      <div id="app">
+        <h1>vue</h1>
+        <!-- 使用插值表达式实现翻转 -->
+        <p>{{msg.split('').reverse().join('')}}</p>
+        <p>{{toReverse}}</p>
+      </div>
+      <script src="./vue.js"></script>
+      <script>
+        const vm = new Vue({
+          el: '#app',
+          data: {
+            msg: 'hello'
+          },
+          // 计算属性
+          computed: {
+            toReverse() {
+                return this.msg.split('').reverse().join('')
+            }
+          }
+        })
+      </script>
+</body>
+</html>
