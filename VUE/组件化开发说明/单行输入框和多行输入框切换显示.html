@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <my-input></my-input>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+
+    Vue.component('my-input', {
+      template: `
+      <div>
+        <input type="text" v-if="isshow" @focus="fn">
+        <textarea cols="30" rows="10" v-else></textarea>
+      </div>
+      `,
+      data() {
+        return {
+          isshow: true
+        }
+      },
+      methods: {
+        async fn() {
+          this.isshow = false
+          await this.$nextTick()
+          document.querySelector('textarea').focus()
+        }
+      }
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+      },
+    })
+  </script>
+</body>
+</html>

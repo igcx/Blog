@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+
+    <my-hello></my-hello>
+    <my-hello></my-hello>
+    <my-hello></my-hello>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    let obj = {
+      count: 0
+    }
+    Vue.component('my-hello', {
+      template: '<div><div>当前值：{{count}}</div><button @click="fn">累加</button></div>',
+      data() {
+        // 如果这里 return 的是全局对象，相当于多个组件共用了一个 数据对象。
+        // return obj
+
+        // let obj = {
+        //   count: 0
+        // }
+        return {
+          count: 0
+        }
+      },
+      methods: {
+        fn() {
+          this.count ++
+        }
+      }
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>

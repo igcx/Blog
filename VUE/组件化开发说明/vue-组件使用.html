@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+    <!-- 组件名相当于是一个自定义标签，通过使用标签的形式来时用我们的组件。 -->
+    <!-- <hello></hello>
+    <hello></hello>
+    <hello></hello>
+    <hello></hello> -->
+    <my-hello></my-hello>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    /* 
+    component参数：
+    参数一：组件的名字
+    参数二：是一个对象，对象内部是组件的配置项。 组件的配置项和vue实例的配置项一样。
+
+    注意：
+      1、组件的配置项中 不需要有el。但是组建中需要template
+      2、组件当中 data必须要配置成一个函数 并且返回一个对象
+      3、组件名不可以和 原生html标签 重名
+      4、组件的template 选项，必须要有惟一的一个 根节点。
+    */
+    Vue.component('my-hello', {
+      template: '<div>{{name}}</div>',
+      data() {
+        return {
+          name: '刘德华'
+        }
+      }
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    模块化：把一个大的js文件，按照一定的规则，拆成多个小的js文件。由多个小的js文件组成一个大的功能。
+    模块：是一个单独的js文件。
+    好处：便于维护、可以复用
+    缺点： 只能针对js文件进行模块化处理。
+
+    组件化：把一个页面拆成多个小的组件，每一个组件实现一个完整功能。
+    模块： 包含 html、css、js 代码
+    好处： 便于维护、可以复用
+   -->
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>
