@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button @click="fn">点击</button>
+    <h1>vue的例子</h1>
+    <p>{{car.brand}} ---- {{car.price}} ------{{car.color}}</p>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        car: {
+          brand : 'poersche',
+          price: 1000000
+        }
+      },
+      methods: {
+        fn() {
+          // this.car.color = 'yellow'
+          // this.$set() 和 vm.$set() 都是 Vue.set()的别名
+          // 参数一： 要添加属性的对象
+          // 参数二： 要动态添加的属性名
+          // 参数三： 属性值
+          this.$set(this.car, 'color', 'yellow')
+
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <ul>
+      <li v-for="item in list">{{item}}</li>
+    </ul>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    /* 
+    如果想通过下标形式 操作数组， vm.$set(vm.list, 3, '黄忠') ,this.$set() ，Vue.set()
+    */
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        list: ['张飞', '赵云', '关羽']
+      }
+    })
+  </script>
+</body>
+</html>

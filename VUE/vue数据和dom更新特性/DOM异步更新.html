@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    在vue中，数据发生改变，DOM随之更新，但是DOM更新是异步的。
+    从性能方面考虑。当数据全部更新完毕，再整体的更新DOM
+   -->
+  <div id="app">
+    <button @click="fn">点我</button>
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello',
+        num : 1
+      },
+      methods: {
+        async fn() {
+          this.msg = '哈哈哈'
+          // console.log(document.querySelector('p').innerHTML)
+          /* 
+          Vue.nextTick 
+          vm.$nextTick
+          this.$nextTick
+          当数据发生变化，要拿到 跟新后的DOM内容，我么需要用到 Vue.nextTick 
+          */
+        //  普通的调用方法
+          // Vue.nextTick(function() {
+          //   console.log(document.querySelector('p').innerHTML)
+          // })
+
+          // promise 链式写法
+          // Vue.nextTick().then(function(){
+          //   console.log(document.querySelector('p').innerHTML)
+          // })
+          
+          // async 、await 写法
+          await Vue.nextTick()
+          console.log(document.querySelector('p').innerHTML)
+
+        }
+      }
+    })
+  </script>
+</body>
+</html>
