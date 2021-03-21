@@ -26,7 +26,7 @@
   5、esc 取消修改
 七、清除完成
   1、给按钮绑定事件
-  2、在事件执行的函数中 ，遍历数，进行请求删除 api
+  2、在事件执行的函数中 ，遍历数组，进行请求删除 api
 */
 
 const vm = new Vue({
@@ -38,7 +38,7 @@ const vm = new Vue({
     clickName: ''
   },
   methods: {
-    getAll() {
+    getAll(){
       axios({
         method: 'get',
         url: `http://localhost:3000/todos`
@@ -47,30 +47,32 @@ const vm = new Vue({
       })
     },
     add() {
-      
+      // console.log(this.name)
       axios({
         method: 'post',
         url: `http://localhost:3000/todos`,
-        // 接口提交的数据写在data中
+        // 接口提交的数据写在 data 中
         data: {
           name: this.name,
-          done: false
+          done:false
         }
       }).then(res => {
+        // console.log(res)
         this.getAll()
         this.name = ''
       })
     },
     del(id) {
+      // console.log(id)
       axios({
         method: 'delete',
         url: `http://localhost:3000/todos/${id}`,
       }).then(res => {
         this.getAll()
-      })
+      }) 
     },
     change(id, done) {
-      // console.log(id,done)
+      // console.log(id, done)
       axios({
         method: 'patch',
         url: `http://localhost:3000/todos/${id}`,
@@ -79,9 +81,10 @@ const vm = new Vue({
         }
       }).then(res => {
         this.getAll()
-      })
+      }) 
     },
     show(id, name) {
+      // console.log(id, name)
       this.clickId = id
       this.clickName = name
     },
@@ -95,7 +98,7 @@ const vm = new Vue({
       }).then(res => {
         this.clickId = ''
         this.getAll()
-      })
+      }) 
     },
     cancel() {
       this.clickId = ''
@@ -110,6 +113,6 @@ const vm = new Vue({
     }
   },
   created() {
-    this.getAll()
+    this.getAll( )
   }
 })
