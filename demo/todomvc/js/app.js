@@ -38,31 +38,41 @@ const vm = new Vue({
     clickName: ''
   },
   methods: {
-    getAll(){
-      axios({
-        method: 'get',
-        url: `http://localhost:3000/todos`
-      }).then(res => {
-        this.list = res.data
-      })
+    async getAll(){
+      // axios({
+      //   method: 'get',
+      //   url: `http://localhost:3000/todos`
+      // }).then(res => {
+      //   this.list = res.data
+      // })
+
+      const res = await axios.get(`http://localhost:3000/todos`)
+      this.list = res.data
     },
-    add() {
+    async add() {
       // console.log(this.name)
-      axios({
-        method: 'post',
-        url: `http://localhost:3000/todos`,
-        // 接口提交的数据写在 data 中
-        data: {
-          name: this.name,
-          done:false
-        }
-      }).then(res => {
-        // console.log(res)
-        this.getAll()
-        this.name = ''
+      // axios({
+      //   method: 'post',
+      //   url: `http://localhost:3000/todos`,
+      //   // 接口提交的数据写在 data 中
+      //   data: {
+      //     name: this.name,
+      //     done:false
+      //   }
+      // }).then(res => {
+      //   // console.log(res)
+      //   this.getAll()
+      //   this.name = ''
+      // })
+
+      const res = await axios.post(`http://localhost:3000/todos`,{
+        name: this.name,
+        done:false
       })
+      this.getAll()
+      this.name = ''
     },
-    del(id) {
+     del(id) {
       // console.log(id)
       axios({
         method: 'delete',
