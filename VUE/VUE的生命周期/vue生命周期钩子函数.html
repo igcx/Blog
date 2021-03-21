@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <!-- 
+        生命周期的概念: 一个事物从诞生到消亡的一个过程
+        每个 Vue 实例(每个组件也都是一个vue实例)都有⼀个完整的⽣命周期：
+            1. 开始创建 (空实例)
+            2. 初始化数据
+            3. 编译模版
+            4. 挂载 DOM
+            5. 渲染、更新数据 => 重新渲染
+            6. 卸载
+        这⼀系列过程我们称之为 Vue 的⽣命周期。
+    -->
+    <!-- 
+        钩子函数：也叫作 生命周期函数，是vue实例 执行到某个阶段会被自动调用的函数。
+        钩子函数： 一共有11个， 8个常用， 分为四组 ： beforexxx    xxxed
+        最最常用的： created 数据请求 ， mounted 初始化第三方 DOM相关的 库， beforeDestroy 清理我们的定时器 和 事件绑定
+    -->
+    <!--
+         生命周期                    执行时机                                             
+         beforeCreate   在组件实例被创建之初、组件的属性⽣效之前被调用               
+         created        在组件实例已创建完毕。此时属性也已绑定，但真实DOM还未⽣成，$el 还不可⽤ 
+         beforeMount    在组件挂载开始之前被调⽤。相关的 render 函数⾸次被调⽤       
+         mounted        在 el 被新建的 vm.$el 替换并挂载到实例上之后被调用           
+         beforeUpdate   在组件数据修改了, 视图更新之前调⽤。发⽣在虚拟 DOM 打补丁之前 
+         updated        在组件数据修改了, 视图更新之后被调用                         
+         activited      在组件被激活时调⽤（使用了 `<keep-alive>` 的情况下）         
+         deactivated    在组件被停用时调⽤（使用了 `<keep-alive>` 的情况下）         
+         beforeDestory  在组件销毁前调⽤  (销毁: vue默认会进行释放掉实例所有的监听, 释放掉所有的组件...) 
+         destoryed      在组件销毁后调⽤  (像定时器,  webscoket连接, ... 跟vue没有太大关联的资源, 需要手动释放!) 
+    -->
+    <!-- 
+         3个关于 vue 组件的生命周期钩子
+    1. activated：keep-alive 组件激活时调用（PS：与组件相关，关于 keep-alive 会在讲解组件时介绍）。
+    2. deactivated：keep-alive 组件停用时调用（PS：与组件相关，关于 keep-alive 会在讲解组件时介绍）。
+    3. errorCaptured ：当捕获一个来自子孙组件的错误时被调用，此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串，此钩子可以返回 false 以阻止该错误继续向上传播。 
+    -->
+     <!-- 将生命周期钩子函数的顺序打乱，并编号，但它还是会自动按照执行顺序输出， -->
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello',
+        timeId: ''
+      },
+      methods: {
+        doResize() {
+          console.log('嘻嘻嘻')
+        }
+      },
+      beforeCreate() {
+        console.log('beforeCreate','在数据挂载之前执行，此时是没有数据的。')
+        console.log(this.msg)
+      },
+      created() {
+        console.log('created','在数据挂载之后执行，此时是有数据的。')
+        console.log(this.msg)
+        this.tiemId = setInterval(function() {
+          console.log('哈哈哈')
+        }, 1000)
+      },
+      beforeMount() {
+        console.log('beforeMount','是在DOM渲染之前执行')
+        console.log(document.querySelector('#app').innerHTML)
+      },
+      mounted() {
+        console.log('mounted','是在DOM渲染之后执行')
+        console.log(document.querySelector('#app').innerHTML)
+        window.addEventListener('resize', this.doResize)
+      },
+      beforeUpdate() {
+        console.log('beforeUpdate','是数据更新后，在DOM渲染之前执行')
+        console.log(document.querySelector('#app').innerHTML)
+      },
+      updated() {
+        console.log('updated','是数据更新后，在DOM渲染之后执行')
+        console.log(document.querySelector('#app').innerHTML)
+      },
+      // vm.$destroy() 我们可以手动 销毁我们的vue实例
+      beforeDestroy() {
+        console.log('beforeDestroy','当前实例销毁之前执行')
+        clearInterval(this.tiemId)
+        window.removeEventListener('resize', )
+      },
+      destroyed() {
+        console.log('destroyed','当前实例销毁之后执行')
+      }
+    })
+  </script>
+</body>
+</html>
