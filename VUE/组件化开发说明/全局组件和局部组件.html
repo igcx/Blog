@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+    <modal></modal>
+    <demo></demo>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    // 全局组件：全局组件能够在任意的组件中使用  Vue.component()
+    // 局部组件：只能够在当前组件中使用  components
+    Vue.component('modal', {
+      template: `
+        <div>我是modal组件> </div>
+      `
+    })
+
+    Vue.component('demo', {
+      template: `
+        <div>我是demo组件 --<modal></modal> --<aa></aa> </div>
+      `,
+      // template data methods computed watch 8个钩子 components
+      components: {
+        aa: {
+          template: `
+            <div>我是aa组件</div>
+          `
+        }
+      }
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>
