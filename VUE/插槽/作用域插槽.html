@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <hr>
+    <demo>
+      <template #content="scope">我是内容 --- {{scope.money}} --- {{scope.car}}</template>
+    </demo>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    /* 
+      作用域插槽： 带有数据的插槽   <slot money="100" car="玛莎拉蒂"></slot>
+
+        如何获取作用域插槽上的数据
+        语法： v-slot:名字 = '值'
+        v-slot="scope" : scope是一个对象，会包含插槽上所有的数据
+    */
+    Vue.component('demo', {
+      template: `
+        <div>
+          <h3>作用域插槽</h3>
+          <div><slot money="100" car="小黄车" aa="bb" name="content"></slot></div>
+        </div>
+      `
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>

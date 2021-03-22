@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <hr>
+    <modal>
+      <template v-slot:title>温馨提示</template>
+      <template v-slot:content>你确定爱我吗?</template>
+    </modal>
+    
+    <modal>
+      <template #title>警告</template>
+      <template #content>你确定要走吗?</template>
+    </modal>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    /* 
+      1. 默认插槽  <slot></slot>
+      2. 具名插槽，如果使用到了多个slot插槽，需要给每一个slot提供一个名字  <slot name="aa"></slot>
+        如果是具名插槽，如何给具名插槽传递内容 v-slot
+        v-slot指令必须用在template标签上
+      
+      插槽的小技巧：
+        <slot name="title">提示</slot>
+        v-slot:title  简写为#title
+
+    */
+    Vue.component('modal', {
+      template: `
+        <div>
+          <h3 class="title"><slot name="title">提示</slot></h3>
+          <div class="content"><slot name="content">我是内容</slot></div>
+          <div class="footer">
+            <button>取消</button>
+            <button>确定</button>
+          </div>
+        </div>
+      `
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>

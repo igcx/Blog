@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <hr>
+    <car>
+      <template v-slot="scope">
+        <a href="#">{{scope.brand}}</a>
+      </template>
+    </car>
+
+    <car>
+      <template v-slot="scope">
+        <button>{{scope.brand}}</button>
+      </template>
+    </car>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    /* 
+      1. 默认插槽  <slot></slot>
+         传值：  <modal>哈哈哈哈</modal>
+      2. 具名插槽  <slot name="title"></slot>
+         传值：   <modal><template v-slot:title>哈哈</template></modal>
+      3. 作用域插槽 <slot car="小黄车" money="100" name="title"></slot>
+         <modal><template v-slot:title="scope">{{scope}}</template></modal>
+    */
+    Vue.component('car', {
+      data () {
+        return {
+          brand: '宝马',
+          price: 300000,
+          color: 'lime'
+        }
+      },
+      template: `
+        <div>
+          <h3>汽车详情</h3>
+          <p>品牌：<slot :brand="brand"></slot></p>
+          <p>价格：{{price}}</p>
+          <p>颜色：{{color}}</p>
+        </div>
+      `
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <hr>
+    <news-header>我的关注</news-header>
+    <news-header>我的跟帖</news-header>
+    <news-header>我的收藏</news-header>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    // 1. 默认情况下，组件的内容会被丢弃，忽略掉
+    // 2. 在定义组件的时候，某一块内容不想写死，可以使用slot标签， slot:插槽
+    Vue.component('news-header', {
+      template: `
+        <div>
+          <span><</span>
+          <span><slot></slot></span>
+        </div>
+      `
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>

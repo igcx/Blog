@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <hr>
+    <demo>
+      <!-- 
+        slot="title" 等价于  v-slot:title    #title
+        slot-scope="scope" :   v-slot="scope"
+
+        slot="title" slot-scope="scope"   v-slot:title="scope"  #title="scope"
+       -->
+      <template slot="title" slot-scope="scope">124 ---{{scope.money}}</template>
+    </demo>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    Vue.component('demo', {
+      template: `
+        <div>
+          <h3>我是demo组件</h3>
+          <slot name="title" money="100"></slot>
+        </div>
+      `
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>
