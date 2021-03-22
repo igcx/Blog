@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+    <father></father>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+
+    Vue.component('father', {
+      template: `
+        <div>
+          <p>我是父组件</p>
+          <p>我配偶的名字<input type="text" v-model="fatherwife"></p>
+          <p>儿媳妇的名字：{{sonwife}}</p>
+          <son :name="fatherwife" @send="getsonwife"></son>
+        </div>
+      `,
+      data() {
+        return {
+          fatherwife: '',
+          sonwife: ''
+        }
+      },
+      methods: {
+        getsonwife(sonwife, str) {
+          // console.log(sonwife)
+          console.log(str)
+          this.sonwife = sonwife
+        }
+      }
+    })
+
+    Vue.component('son', {
+      template: `
+        <div>
+          <hr>
+          <p>我是子组件</p>
+          <p>我妈妈名字：{{name}}</p>
+          <p>我配偶的名字<input type="text" v-model="mywife" @keyup="sendwife"></p>
+        </div>
+      `,
+      data() {
+        return {
+          mywife: ''
+        }
+      },
+      props: ['name'],
+      methods: {
+        sendwife() {
+          // 可以传多个参数给父组件，参数之间通过 ","分割。
+          this.$emit('send', this.mywife, '22222')
+        }
+      }
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>

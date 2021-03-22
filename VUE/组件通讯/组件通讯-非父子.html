@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+    <jack></jack>
+    <hr>
+    <rose></rose>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    // 定义一个叫做bus的vue实例 用于非父子之间传递参数。
+  const bus = new Vue()
+
+
+  Vue.component('jack', {
+    template:`
+      <div>
+        <button @click="send">jack对rose说</button>
+      </div>
+    `,
+    data () {
+      return {
+        msg: 'you jump i look'
+      }
+    },
+    methods: {
+      send() {
+        bus.$emit('send', this.msg)
+      }
+    }
+  })
+
+  Vue.component('rose', {
+    template: `
+      <div>
+        <h3>我是rose组件  ---{{msg}}</h3>
+      </div>
+    `,
+    data() {
+      return {
+        msg: ''
+      }
+    },
+    // 只要rose渲染，就给bus注册事件
+    created() {
+      // $on 绑定事件。
+      bus.$on('send', (msg) => {
+        console.log(msg)
+        this.msg = msg
+      })
+    }
+  })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>

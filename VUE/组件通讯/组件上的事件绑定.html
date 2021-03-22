@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <!-- 
+      1、组件的事件： 不会被组件上面的交互所触发。
+      2、要想触发组件上面的事件，需要在组件内部触发， $emit的方法
+      3、$emit()： 触发当前组件自身的一个事件。
+        参数一：定义自定义事件名。可以不是click dblclick 之类的。
+     -->
+    <p @click="fn">{{msg}}</p>
+    <demo @click="fn" @aa="bb"></demo>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+
+    Vue.component('demo', {
+      template: `
+        <div>
+          <p>我是demo组件中的p标签</p>
+          <p>我也是demo组件中的p标签</p>
+          <button @click="fn">点我触发demo组件的click事件</button>
+        </div>
+      `,
+      methods: {
+        fn() {
+          this.$emit('click')
+          this.$emit('aa')
+        }
+      }
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      },
+      methods: {
+        fn() {
+          console.log('哈哈哈哈')
+        },
+        bb() {
+          console.log('我是aa事件调用的 bb方法。')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

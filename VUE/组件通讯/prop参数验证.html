@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+    <demo :strname="user.name" :nummoney="user.money" ></demo>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+
+    Vue.component('demo', {
+      template: `
+        <div>
+          <p>名字：{{strname}} -------工资：{{nummoney + 500}}</p>
+          <p>朋友：{{friend.name}}-----{{friend.age}}</p>
+        </div>
+      `,
+      // 如果要对参数进行验证 props 内容要定义为一个对象。
+      // props: ['strname', 'nummoney']
+      props: {
+        nummoney: Number,
+        strname: {
+          type: [String, Number],
+          default: '李四'
+        },
+        // 如果接收一个参数，是复杂类型的数据，那么我们如果配置默认值项，需要通过一个工厂函数返回一个 对象 或者 数组。
+        friend: {
+          type: Object,
+          default: function () {
+            return {
+              name: '李小龙',
+              age: 40
+            }
+          }
+        }
+      }
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello',
+        user: {
+          name: '张三',
+          money: 1000
+        },
+        friend: {
+          name: '李四',
+          age: 88
+        }
+      }
+    })
+  </script>
+</body>
+</html>

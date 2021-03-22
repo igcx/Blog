@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+    <father></father>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    /* 
+    父传子 ：
+      1、在调用子组件的时候，可以在子组件的标签上 添加自定义属性来传递参数
+      2、子组件通过props 数组，来接收 父组件传递过来的参数。
+      3、调用子组件时 自定义属性名 要和 子组件 中 props 接收的参数名一致。
+    */
+    Vue.component('father', {
+      template: `
+        <div>
+          <p>我是{{name}}</p>  
+          <son :sonname="sonname"></son>
+        </div>
+      `,
+      data() {
+        return {
+          name: '父组件',
+          sonname: '子组件'
+        }
+      }
+    })
+
+    Vue.component('son', {
+      template: `
+        <div>
+          <p>我是{{sonname}}</p>  
+        </div>
+      `,
+      data() {
+        return {
+        }
+      },
+      props: ['sonname']
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>

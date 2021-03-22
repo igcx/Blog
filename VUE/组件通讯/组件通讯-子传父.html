@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+
+    组件通讯：
+      父传子： 
+        父组件：
+          1、父组件准备数据
+          2、父组件通过自定义属性把数据传给子组件
+        子组件：
+          1、props 接收父组件传递过来的数据。 
+          2、子组件应用父组件传递过来的参数。
+
+      子传父
+        子组件：
+          1、子组件准备数据
+          2、子组件 通过$emit方法 ，触发一个当前组件上的自定义事件，并传递参数给父组件。
+
+        父组件：
+          1、父组件绑定子组件触发的自定义事件。并指定事件执行的函数。
+          2、事件执行的函数中，接收子组件传递过来的参数。
+
+
+        
+
+    $emit()： 触发当前组件自身的一个事件。
+        参数一：定义自定义事件名。可以不是click dblclick 之类的。
+        参数二：传递参数
+   -->
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+    <demo @send="get"></demo>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+
+    Vue.component('demo', {
+      template: `
+        <div>
+          <p>我是demo组件中的p标签</p>
+          <p>我也是demo组件中的p标签</p>
+          <button @click="fn">点我触发demo组件的click事件</button>
+        </div>
+      `,
+      data() {
+        return {
+          msg: '子组件的msg'
+        }
+      },
+      methods: {
+        fn() {
+          this.$emit('send', this.msg)
+        }
+      }
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      },
+      methods: {
+        get(msg) {
+          console.log('我是get方法:-------' + msg)
+          this.msg = msg
+        }
+      }
+    })
+  </script>
+</body>
+</html>

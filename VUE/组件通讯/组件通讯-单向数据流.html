@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{user.name}}--------------{{user.age}}</p>
+    <demo :strcontent="content" :objuser="user"></demo>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+
+    Vue.component('demo', {
+      template: `
+        <div>
+          <p>{{strcontent}}</p>
+          <p>{{objuser.name}}--------------{{objuser.age}}</p>
+          <button @click="change">改变值</button>
+        </div>
+      `,
+      props: ['strcontent', 'objuser'],
+      methods: {
+        change() {
+          // props 中接收的参数 在子组件中 不可以修改
+          // 单向数据流。
+          // this.strcontent = '哈哈哈哈'
+          // this.objuser = {}
+          // 改变props 接收的 复杂类型数据的 属性值 ，不会报错。
+          // 但是会影响到父组件的数据，造成数据混乱。
+          // 我们不提倡在子组件中 改变父组件的数据， 要遵循 单向数据流原则。
+          this.objuser.name = '李四'
+        }
+      }
+    })
+
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        content: '我是父组件的信息',
+        user: {
+          name: '张三',
+          age: 18
+        }
+      }
+    })
+  </script>
+</body>
+</html>
