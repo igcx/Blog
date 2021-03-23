@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <!-- <p v-demo>{{msg}}</p> -->
+    <input type="text" v-demo:aa.stop.prevent="msg">
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    /* 
+      1. 定义一个指令
+      2. 使用自定义指令
+
+      v-pre v-once
+      v-show="值" v-text="值" v-html="值"
+      v-bind:参数="值" v-slot:参数="值"
+      v-on:参数.修饰符.修饰符 = "值"
+
+    */
+    // 参数1：指令的名字
+    // 参数2：对象 指令的配置， 可以配置5个指令的钩子函数
+    /* 
+      bind: 只会执行一次， 当指令和元素绑定的时候
+      inserted: 指令所在的元素在页面中渲染了
+      update: 指令的值发生了更新，就会执行。
+    */
+    Vue.directive('demo', {
+      // 只会执行一次，指令和所在的元素进行绑定的时候
+      // el: 指令绑定的元素
+      // binding: 包含了指令中所有的信息
+      bind(el, binding) {
+        console.log('bind钩子函数执行了');
+        console.log(el);
+        console.log(binding);
+        // el.focus();
+      },
+      // 指令所在的元素插入到页面中。已经渲染好了
+      inserted (el) {
+        console.log('inserted钩子函数执行了');
+        el.focus();
+      },
+      // 指令的值发生改变的时候，执行update钩子函数
+      update() {
+        console.log('update钩子函数执行');
+      },
+      componentUpdated () {
+        console.log('componentUpdated钩子函数执行');
+      },
+      unbind () {
+
+      }
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1 v-mybind:title="msg" v-color:bg="color1">vue的例子</h1>
+    <p v-color:fz="color2">{{msg}}</p>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    // 指令的参数只能有一个
+    // v-bind
+    // v-color:参数="color"
+    // v-color:bg="color"
+    // v-color:fz="color"
+    // binding.arg: 获取到指令的参数
+    // binding.value 获取到指令的值
+    // 思考：v-bind内部的逻辑是什么
+    Vue.directive('mybind', {
+      bind(el, binding) {
+        el.setAttribute(binding.arg, binding.value)
+      }
+    })
+
+
+    Vue.directive('color', {
+      bind(el, binding) {
+        if (binding.arg === 'fz') {
+          el.style.color = binding.value
+        }
+        if (binding.arg === 'bg') {
+          el.style.backgroundColor = binding.value
+        }
+      },
+      update(el, binding) {
+        if (binding.arg === 'fz') {
+          el.style.color = binding.value
+        }
+        if (binding.arg === 'bg') {
+          el.style.backgroundColor = binding.value
+        }
+      }
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello',
+        color1: 'red',
+        color2: 'blue'
+      },
+    })
+  </script>
+</body>
+</html>

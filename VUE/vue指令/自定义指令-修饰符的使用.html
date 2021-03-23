@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div v-color:bg.italic.bold = "color1">vue的例子</div>
+    <p v-color:fz.italic="color2">{{msg}}</p>
+
+    <div v-aa="color1">123</div>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    
+
+    /* 
+      v-color:bg.italic.bold = "color1"
+      v-color:bg = "color1"
+      v-color:fz.bold = "color1"
+    */
+    Vue.directive('color', function (el, binding) {
+        if (binding.arg === 'fz') {
+          el.style.color = binding.value
+        }
+        if (binding.arg === 'bg') {
+          el.style.backgroundColor = binding.value
+        }
+        if (binding.modifiers.italic) {
+          el.style.fontStyle = 'italic';
+        }
+        if (binding.modifiers.bold) {
+          el.style.fontWeight = 'bold';
+        }
+      }
+    )
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello',
+        color1: 'red',
+        color2: 'blue'
+      },
+      directives: {
+        aa (el, binding) {
+          el.style.backgroundColor = binding.value;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

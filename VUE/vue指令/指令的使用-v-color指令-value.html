@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1 v-color="color1">vue的例子</h1>
+    <p v-color="color2" v-myhtml="msg">嘻嘻嘻</p>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    /* 
+      v-html="值" v-text v-show v-if
+    */
+    Vue.directive('myhtml', {
+      bind(el, binding) {
+        el.innerHTML = binding.value;
+      },
+      update(el, binding) {
+        el.innerHTML = binding.value;
+      }
+    })
+
+
+    Vue.directive('color', {
+      bind(el, binding) {
+        console.log(el, binding);
+        // 获取指令的值
+        el.style.backgroundColor = binding.value;
+      },
+      update (el, binding) {
+        el.style.backgroundColor = binding.value;
+      }
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        color1: 'red',
+        color2: 'green',
+        msg: '<a href="#">嘻嘻</a>'
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1 v-red>vue的例子</h1>
+    <p v-red>{{msg}}</p>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    // v-red : 给哪个元素添加，这个元素就会背景色变红
+    Vue.directive('red', {
+      bind(el) {
+        el.style.backgroundColor = 'red';
+      },
+      inserted(el) {
+        // el.style.backgroundColor = 'red';
+      },
+      update () {
+
+      }
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+    })
+  </script>
+</body>
+</html>
