@@ -1,6 +1,15 @@
 
 // this 是一个在运行时才进行绑定的引用，在不同的情况下它可能会被绑定不同的对象。
 
+// 全局对象的 this 指向 window 对象
+// 全局函数执行 this 指向 window
+// this 永远指向最后调用它的那个对象
+// new 关键词改变了 this 指向
+// apply call bind 可以改变 this 指向
+// 箭头函数的 this 在定义时确定
+// 匿名函数的 this 永远指向 window
+
+
 // 默认绑定 (指向window的情况)  (函数调用模式 fn() )
 // 默认情况下， this 会被绑定到全局对象上，比如在浏览器环境中就为 window 对象，在node.js环境下为 global 对象。
 // 如下代码展示了这种绑定关系：
