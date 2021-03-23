@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title> 
+  <style>
+    p {
+      width: 700px;
+    }
+    /* 
+      如果是配合动画实现vue的动画，只需要使用两个  v-enter-active  v-leave-active
+    */
+    .v-enter-active {
+      animation: heartBeat .5s;
+    }
+
+    .v-leave-active {
+      animation: heartBeat .5s reverse; 
+    }
+
+    @keyframes heartBeat {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    /* animate.css */
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <button @click="isShow = !isShow">切换</button>
+    <transition>
+      <p v-if="isShow">{{msg}}</p>
+    </transition>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        isShow: true,
+        msg: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.'
+      }
+    })
+  </script>
+</body>
+</html>

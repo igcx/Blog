@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+    }
+
+    .slide-enter {
+      transform: translateX(-100%);
+    }
+    .slide-enter-to {
+      transform: translateX(0);
+    }
+    .slide-enter-active {
+      transition: 1s;
+    }
+
+    .slide-leave {
+      transform: translateX(0);
+    }
+
+    .slide-leave-to {
+      transform: translateX(100%);
+    }
+
+    .slide-leave-active {
+      transition: 1s;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <button @click="fn">切换</button>
+    <transition name="slide">
+      <p v-if="isShow">{{msg}}</p>
+    </transition>
+
+
+    <transition name="aa">
+      <div>123</div>
+    </transition>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    /* 
+      1. 使用 transition标签 包裹需要执行动画的元素
+      2. 这个transition标签会在特定的时机给元素添加6个类名
+        v-enter:  进入前
+        v-enter-to: 进入后
+        v-enter-active: 整个进入的过程
+
+        v-leave : 离开前
+        v-leave-to: 离开后
+        v-leave-active: 离开的整个过程
+    */
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello',
+        isShow: true
+      },
+      methods: {
+        fn () {
+          this.isShow = !this.isShow
+        }
+      }
+    })
+  </script>
+</body>
+</html>

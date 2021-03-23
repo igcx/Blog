@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="animate.css"> -->
+  <link rel="stylesheet" href="animate.css@3.5.1.css">
+  <title>Document</title> 
+  <style>
+    p {
+      width: 700px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <button @click="isShow = !isShow">切换</button>
+    <!-- <transition enter-active-class="animate__animated animate__rotateInDownLeft" leave-active-class="animate__animated animate__rotateOutUpRight">
+      <p v-if="isShow">{{msg}}</p>
+    </transition> -->
+    <transition enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+      <p v-if="isShow">{{msg}}</p>
+    </transition>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        isShow: true,
+        msg: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.'
+      }
+    })
+  </script>
+</body>
+</html>
