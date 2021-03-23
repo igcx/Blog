@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <hr>
+    <p>{{msg | hx}}</p>
+    <p>{{msg1 | hx}}</p>
+    <p>{{msg | aa}}</p>
+
+    <hr>
+    <demo></demo>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    // 屏蔽 关键字  
+    // 1. 全局过滤器  Vue.filter()
+    // 2. 局部过滤器  filters
+    Vue.filter('hx', input => {
+      return input.replace(/垃圾|FW|ZZ|NT/g, '**')
+    })
+
+    Vue.component('demo', {
+      template: `
+        <div>
+          <h3>我是demo组件</h3>
+          <div>{{11 | aa}}</div>
+        </div>
+      `,
+      filters: {
+        aa (input) {
+          return input + 'aa'
+        }
+      }
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '这个辅助真垃圾，都0-8了，还不买眼',
+        msg1: '这个上单真是个FW,0-6了还不出肉'
+      }
+    })
+  </script>
+</body>
+</html>

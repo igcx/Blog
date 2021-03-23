@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg | aa}}</p>
+    <p>{{msg1 | aa}}</p>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    // 1. 使用过滤器的语法 {{msg | 过滤器}}
+    // 2. 定义过滤器
+    // 参数1： 过滤器名字
+    // 参数2： 函数，处理过滤的逻辑 
+    //        input: 需要过滤的数据
+    //        返回过滤的结果
+    Vue.filter('aa', (input) => {
+      console.log(input);
+      return input.toUpperCase();
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello',
+        msg1: 'xixixi'
+      }
+    })
+  </script>
+</body>
+</html>

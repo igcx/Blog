@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <hr>
+    <p>{{time1 | time}}</p>
+    <p>{{time2 | time('YYYY-MM-DD HH:mm')}}</p>
+    <p>{{time3 | time}}</p>
+  </div>
+  <script src="vue.js"></script>
+  <script src="moment.js"></script>
+  <script>
+    // 过滤器可以有额外的参数，推荐给这些额外的参数设置默认值。
+    Vue.filter('time', function (input, str = 'YYYY-MM-DD') {
+      console.log(input, str);
+      // 对时间进行过滤，格式化成 2020-08-08  moment
+      return moment(input).format(str)
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        time1: new Date(),
+        time2: '2020-08-08 12:00:00',
+        time3: 1597890315244
+      }
+    })
+  </script>
+</body>
+</html>
