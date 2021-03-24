@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+
+    <!-- <aa></aa> -->
+
+    <router-view></router-view>
+  </div>
+  <script src="vue.js"></script>
+  <script src="vue-router.js"></script>
+  <script>
+    Vue.use(VueRouter)
+    /* 
+      vue中的组件分为3类组件
+        全局组件  Vue.component() 
+        局部组件  components: {}
+        路由组件  通过路由的规则进行配置
+    */
+
+    // 会把组件所有的配置放到一个对象中
+    const User = {
+      template: `
+        <div>我是User组件 -- {{msg}}</div>
+      `,
+      data () {
+        return {
+          msg: '哈哈'
+        }
+      }
+      // template data methods computed watch 8个钩子 filters components directives
+    }
+
+    const router = new VueRouter({
+      routes: [
+        { path: '/user', component: User }
+      ]
+    })
+
+    // 1. 全局注册
+    // 参数1：组件的名字  参数2：组件的配置
+    // Vue.component('aa', User);
+    // 2. 局部注册
+    // components
+    // 3. 通过路由进行配置
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      },
+      router
+      // components: {
+      //   aa: User
+      // }
+    })
+  </script>
+</body>
+</html>
