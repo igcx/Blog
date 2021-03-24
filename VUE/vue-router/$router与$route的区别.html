@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+
+    <hr>
+    <router-view></router-view>
+  </div>
+  <script src="vue.js"></script>
+  <script src="vue-router.js"></script>
+  <script>
+    Vue.use(VueRouter);
+
+    const Post = {
+      template: `
+        <div>我是文章组件</div>
+      `
+    }
+
+    /* 
+      $router代表的是整个路由对象，整个项目中只有一个，，， $router.push() 可以用于实现路由的跳转
+      $route: 代表的是当前的路由规则
+        path: 地址栏中的锚点值部分
+    */
+    const router = new VueRouter({
+      routes: [
+        { path: '/post/:id', component: Post },
+      ]
+    });
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      },
+      router
+    })
+  </script>
+</body>
+</html>

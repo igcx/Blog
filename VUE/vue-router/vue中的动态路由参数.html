@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+    <hr>
+    <router-view></router-view>
+  </div>
+  <script src="vue.js"></script>
+  <script src="vue-router.js"></script>
+  <script>
+    Vue.use(VueRouter);
+
+    const Post = {
+      template: `
+        <div>我是文章组件</div>
+      `,
+      created () {
+        console.log('发送ajax请求去获取新闻数据')
+        // this.$route ： 代表当前的一个路由规则
+        // this.$router  整个路由对象，，，跳转
+        console.log(this.$route.params.id);
+      }
+    }
+
+    // 动态的路由参数
+    const router = new VueRouter({
+      routes: [
+        // path: '/post/:id'
+        // /post/:id  可以匹配  所有的 /post/xxx
+        { path: '/post/:id', component: Post },
+      ]
+    });
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      },
+      router
+    })
+  </script>
+</body>
+</html>
