@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>网抑云音乐</h1>
+    <router-link to="/find">发现音乐</router-link>
+    <router-link to="/my">我的</router-link>
+    <router-link to="/friends">朋友</router-link>
+    <hr>
+    <router-view></router-view>
+  </div>
+  <script src="vue.js"></script>
+  <script src="vue-router.js"></script>
+  <script>
+    // 配置嵌套路由
+    // 1. 通过路由规则中children属性来配置子路由
+    // 2. 在组件中通过router-view配置子路由的出口
+    const Find = {
+      template: `
+        <div>
+          我是发现音乐组件
+          <router-link to="/find/rank">排行榜</router-link>
+          <router-link to="/find/list">列表</router-link>
+          <hr/>
+          <router-view></router-view>
+        </div>
+      `
+    }
+    const My = {
+      template: `
+        <div>我的音乐</div>
+      `
+    }
+    const Friends = {
+      template: `
+        <div>我的朋友</div>
+      `
+    }
+
+    const Rank = {
+      template: `
+        <div>我是排行榜</div>
+      `
+    }
+    const List = {
+      template: `
+        <div>我是歌单列表组件</div>
+      `
+    }
+
+    Vue.use(VueRouter)
+    const router = new VueRouter({
+      routes: [
+        { 
+          path: '/find', 
+          component: Find,
+          // 子路由规则
+          children: [
+            // 子路由的路径 不带 /
+            { path: 'rank', component: Rank },
+            { path: 'list', component: List },
+          ]
+        },
+        { path: '/my', component: My },
+        { path: '/friends', component: Friends },
+      ]
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      },
+      router
+    })
+  </script>
+</body>
+</html>

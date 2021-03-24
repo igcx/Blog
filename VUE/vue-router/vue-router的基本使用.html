@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>vue的例子</h1>
+    <p>{{msg}}</p>
+  </div>
+  <script src="vue.js"></script>
+  <script src="vue-router.js"></script>
+  <script>
+    /* 
+      1. 引入vue和vue-router
+      2. 先使用vue的插件 Vue.use(VueRouter)
+      3. 创建路由对象
+      4. 关联router和vm实例
+    */
+    Vue.use(VueRouter)
+
+    const router = new VueRouter()
+
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      },
+      router
+    })
+  </script>
+</body>
+</html>

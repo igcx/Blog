@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>乐淘商城</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="./lib/fa/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./lib/mui/css/mui.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="icon" href="favicon.ico" />
+    <style>
+      /* .router-link-exact-active,
+      .router-link-active {
+        color: orange;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="lt_container">
+      <div class="lt_header">
+        <a href="index.html" class="icon_left"><i class="fa fa-home"></i></a>
+        <h3>乐淘云购</h3>
+        <a href="search.html" class="icon_right"><i class="fa fa-search"></i></a>
+      </div>
+      <div class="lt_main">
+        <router-view></router-view>
+      </div>
+      <div class="lt_footer">
+        <ul>
+          <li>
+            <router-link to="/" exact>
+              <i class="fa fa-home"></i>
+              <p>首页</p>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/category">
+              <i class="fa fa-bars"></i>
+              <p>分类页</p>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/cart">
+              <i class="fa fa-shopping-cart"></i>
+              <p>购物车</p>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/user">
+              <i class="fa fa-user"></i>
+              <p>用户中心</p>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script>
+      /* 创建4个组件 */
+      const Index = {
+        template: `
+          <div>我是Index组件</div>
+        `
+      }
+      const Category = {
+        template: `
+          <div>我是Category组件</div>
+        `
+      }
+      const Cart = {
+        template: `
+          <div>我是Cart组件</div>
+        `
+      }
+      const User = {
+        template: `
+          <div>我是User组件  <button @click="login">登录</button></div>
+        `,
+        methods: {
+          login () {
+            if (Math.random() > 0.5) {
+              this.$router.push('/')
+            } else {
+              console.log('登录失败')
+            }
+          }
+        }
+      }
+      // 使用路由插件
+      Vue.use(VueRouter)
+      // 创建路由对象
+      const router = new VueRouter({
+        routes: [
+          // { path: '/', redirect: '/index' },
+          { path: '/', component: Index },
+          { path: '/category', component: Category },
+          { path: '/cart', component: Cart },
+          { path: '/user', component: User }
+        ],
+        // 修改默认 模糊匹配类名
+        linkActiveClass: 'current',
+        linkExactActiveClass: 'current'
+      })
+
+      const vm = new Vue({
+        el: '.lt_container',
+        router
+      });
+    </script>
+  </body>
+</html>
